@@ -11,11 +11,6 @@
  	color: #fff;
  	}
  </style>
-<ul class="menu">
-<li><a href="title.html"><img src="https://1.bp.blogspot.com/-ULz9dE8cz20/V7ADa_msnAI/AAAAAAAABt8/AJOlI64e9yg3aRexEsfgCvVHJElIKk65gCPcB/s400/pokemon_go_logo.png" alt="PokemonGO"> </li></a>
- <li><a href="start.html" class="menu-item">Start</a> </li>
- <li><a href="about.html" class="menu-item">About</a></li>
- <li><a href="top_list.html" class="menu-item">Top List</a></li>
-</ul>
+ <?php include("Menu.php"); Menu::getMain(0); ?>
 </body>
 </html>
