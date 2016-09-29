@@ -1,60 +1,50 @@
-body {
-	background: url(background/back.jpg);
-}
-.body_about {
-	background: url(background/about_image.jpg);
-	color:#FFF;
-}
-.body_start { 
-	background: url(background/start_image.png);
-}
-.body_top { 
-	background: url(background/top_list_image.png);
-	color:#FFF;
-}
- #menu {
+ .menu {
 	 list-style-type: none;
 	 display:flex;
 	 flex-direction:initial;
  }
-  /*Анимация кнопок взята отсюда http://codepen.io/sazzad/pen/yNNNJG */
+ .body {
+ 	color:#000000;
+ }
+  /* http://codepen.io/sazzad/pen/yNNNJG */
   
-a.button:link, a.button:visited,a.button_diz:link, a.button_diz:visited{/*уже посещенные*/
-	margin: 34px auto 0;/*отступ от края элемента*/
-	padding: 17px 90px;/*Устанавливает значение полей вокруг содержимого элемента.*/
+.menu-item:link, .menu-item:visited,.menu-item-disable:link, .menu-item-disable:visited{
+	margin: 34px auto 0;
+	padding: 17px 90px;
 	font-size:14px;
-	font-weight: bold;/*насыщенность шрифта*/
-	text-align: center;/*выравнивание*/
+	font-weight: bold;
+	text-align: center;
 	text-decoration: none;
-	text-transform: uppercase;/*заглавные буквы*/
-	overflow: hidden;/*отображение содержания блочного элемента*/
-	letter-spacing: .08em; /* интервал между символами*/
-	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2); /*тень текста*/
-	/*-webkit-transition: all 1s ease;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em; 
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;*/
+	-o-transition: all 1s ease;
 }
-a.button:link:after, a.button:visited:after,a.button_diz:link:after, a.button_diz:visited:after{
+.menu-item:link:after, .menu-item:visited:after,.menu-item-disable:link:after, .menu-item-disable:visited:after{
 	/*content: "";*/
-	position: absolute;/* позиционирования элемента*/
+	position: absolute;
 	height: 0%;
 	left: 50%;
 	top: 50%;
 	width: 150%;
-	/*z-index: -1;*/
-	/*-webkit-transition: all 0.75s ease 0s;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
 	-moz-transition: all 0.75s ease 0s;
-	-o-transition: all 0.75s ease 0s;*/
+	-o-transition: all 0.75s ease 0s;
 	transition: all 0.75s ease 0s;
 }
-a.button:link:hover, a.button:visited:hover,a.button_diz:link:hover, a.button_diz:visited:hover{
-	color: #FFF;
+.menu-item:link:hover, .menu-item:visited:hover,.menu-item-disable:link:hover, .menu-item-disable:visited:hover{
+	/*color: #FFF;*/
+	color:#f7ca18;
 	text-shadow: none;
 }
-a.button:link:hover:after, a.button:visited:hover:after,a.button_diz:link:hover:after, a.button_diz:visited:hover:after {
+.menu-item:link:hover:after, .menu-item:visited:hover:after,.menu-item-disable:link:hover:after, .menu-item-disable:visited:hover:after{
 	height: 450%;
 }
-a.button {
+.menu-item {
 	color: #fff;
 	cursor: pointer;
 	display: block;
@@ -62,40 +52,40 @@ a.button {
 	border: 2px solid #F7CA18;
 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
-a.button_diz {
+.menu-item-disable {
 	color: #fff;
 	cursor: pointer;
 	display: block;
 	position: relative;
 	border: 2px solid #F7CA18;
 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-	pointer-events: none; /* делаем ссылку некликабельной */
-    cursor: default;  /* устанавливаем курсор в виде стрелки */
-    color: #999; /* цвет текста для нективной ссылки */
+	pointer-events: none; 
+    cursor: default; 
+    color: #999; 
 }
-a.button:hover ,a.button_diz:hover{
+.menu:hover{
 	color: #000 !important;
 	background-color: transparent;
 	text-shadow: ntwo;
 }
-a.button:hover:before,a.button_diz:hover:before {
+.menu:hover:before {
 	top: 0%;
 	bottom: auto;
 	height: 100%;
 }
-a.button:before,a.button_diz:before {
+.menu:before {
 	display: block;
 	position: absolute;
 	left: 0px;
 	bottom: 0px;
 	height: 0px;
 	width: 100%;
-	/*z-index: -1;*/
+	z-index: -1;
 	color: #000 !important;
 	background: #F7CA18;
 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
-.textabout{
+.about-text1{
 	position:relative;
     height: 80px;
     overflow: hidden;
@@ -105,7 +95,7 @@ a.button:before,a.button_diz:before {
 	min-width:600px;
 	max-width:600px;
 }
-.textabout2{
+.about-text2{
 	position:relative;
 	height: 120px;
     overflow: hidden;
@@ -115,10 +105,10 @@ a.button:before,a.button_diz:before {
 	min-width:600px;
 	max-width:600px;
 }
-.imageline{
+.about-image{
 	padding-left:205px;
 }
-#start_game {
+.button-start {
     border: 6px solid #f1eae9;
     display: inline-block;
     font-size: 18px;
