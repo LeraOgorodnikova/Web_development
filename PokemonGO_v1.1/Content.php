@@ -5,36 +5,35 @@ class Content
             1=>["title"=>"index.html",
             "path"=>"index.php",
             "href"=>"index.php?page=1",
-            "bodyImage"=>"css/background/back.jpg"],
+            "bodyClass"=>"body__index"],
 
             2=>["title"=>"start",
             "path"=>"assets/start.html",
             "class"=>"menu__item",
             "href"=>"index.php?page=2",
-            "bodyImage"=>"css/background/start_image.png"],
+            "bodyClass"=>"body__start"],
 
             3=>["title"=>"about",
             "path"=>"assets/about.html",
             "class"=>"menu__item",
             "href"=>"index.php?page=3",
-            "bodyImage"=>"css/background/about_image.jpg"],
+            "bodyClass"=>"body__about"],
 
             4=>["title"=>"top list",
             "path"=>"assets/top_list.html",
             "class"=>"menu__item",
             "href"=>"index.php?page=4",
-            "bodyImage"=>"css/background/top_list_image.png"]
+            "bodyClass"=>"body__toplist"]
     ];
     public static function getPage($numPage){
+        $content="";
         if (array_key_exists ( $numPage , self::$items)==true){
-            $image=self::getBodyImage($numPage);
-            $content="<style>body{background-image:url($image);color:#fff;overflow:hidden;}</style>";
-            $content.=file_get_contents(Content::$items[$numPage]['path']);
+            $content=file_get_contents(Content::$items[$numPage]['path']);
         }
         return $content;
     }
-    public static function getBodyImage($numPage){
-        return self::$items[$numPage]['bodyImage'];
+    public static function getBodyStyle($numPage){
+        return self::$items[$numPage]['bodyClass'];
     }
     public static function getLogo(){
         $value=self::$items[1];

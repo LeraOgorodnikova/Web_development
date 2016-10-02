@@ -1,3 +1,24 @@
+.body__index{
+background-image:url(background/back.jpg);
+color:#fff;
+overflow:hidden;
+}
+.body__start{
+background-image:url(background/start_image.png);
+color:#fff;
+overflow:hidden;
+}
+.body__about{
+background-image:url(background/about_image.jpg);
+color:#fff;
+overflow:hidden;
+}
+.body__toplist{
+background-image:url(background/top_list_image.png);
+color:#fff;
+overflow:hidden;
+}
+
  .menu {
 	 list-style-type: none;
 	 display:flex;
