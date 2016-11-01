@@ -10,9 +10,12 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 	</head>
-	<body class="{{currentImage()}}" ng-controller="backgroundController">
+	<body class="body__index">
+        <a href="#/page/0"><img src="https://1.bp.blogspot.com/-ULz9dE8cz20/V7ADa_msnAI/AAAAAAAABt8/AJOlI64e9yg3aRexEsfgCvVHJElIKk65gCPcB/s400/pokemon_go_logo.png" alt="PokemonGO"/>
 
-		<div class="menuContr" ng-controller="menuController">
+
+		<div class="menuContr"ng-controller="menuController">
+		<menu-directive></menu-directive>
 		</div>
 
 		<ng-view></ng-view>
