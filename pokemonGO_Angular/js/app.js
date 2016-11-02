@@ -1,7 +1,6 @@
 "use strict";
 
-var app = angular.module("game", ["ngRoute", "ngResource"]);
-
+var app = angular.module("app", ["ngRoute", "ngResource"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/page/:id", {
@@ -16,43 +15,31 @@ app.config(function($routeProvider) {
 	$scope.page=parseInt($routeParams.id) || 0;
 	
 })
+.controller('ListScoreController', function($scope, $http,$log) {
+  $http.get("http://localhost:8081/?controller=user").then(function (response) {
+      $newArray = response.data.records;
+      $newArray.sort();
+      alert("IN LIST");
+      alert($newArray);
+      $scope.UserScore=$newArray;
+  });
+})
 
-	.controller("menuController",function ($scope,$log,$rootScope,$routeParams) {
+.controller("menuController",function ($scope,$log,$rootScope,$routeParams) {
 		$scope.page=parseInt($routeParams.id) || 0;
 	})
-	.directive("menuDirective" , function(){
+.directive("menuDirective" , function(){
 		return {
 			restrict: 'E',
 			templateUrl:"assets/directives/menu.html",
 			replace: true,
-			transclude: true,
+			// transclude: true,
+			scope:{
+			current:'='
+		    },
 			controller: function($scope){
-				switch($scope.current) {
-					case 0:{
-						$scope.button1="menu__item";
-						$scope.button2="menu__item";
-						$scope.button3="menu__item";
-						break;
-					}
-					case 1:{
-						$scope.button1="menu__item-disable";
-						$scope.button2="menu__item";
-						$scope.button3="menu__item";
-						break;
-					}
-					case 2:{
-						$scope.button1="menu__item";
-						$scope.button2="menu__item-disable";
-						$scope.button3="menu__item";
-						break;
-					}
-					case 3:{
-						$scope.button1="menu__item";
-						$scope.button2="menu__item";
-						$scope.button3="menu__item-disable";
-						break;
-					}
-				}
-			}
+			 //$scope.page=parseInt($routeParams.id) || 0;
+			 //$scope.current=$scope.page;
+			 }
 		}
 	})

@@ -1,5 +1,5 @@
 .body__index{
-background-image:url(background/back.jpg);
+background-image:url(background/back.png);
 color:#fff;
 overflow:hidden;
 }
@@ -10,7 +10,7 @@ overflow:hidden;
  }
   /* http://codepen.io/sazzad/pen/yNNNJG */
 
-.menu__item:link, .menu__item:visited,.menu__item-disable:link, .menu__item-disable:visited{
+.menu__button:link, .menu__button:visited,.menu__button-active:link, .menu__button-active:visited{
 	margin: 34px auto 0;
 	padding: 17px 90px;
 	font-size:14px;
@@ -25,7 +25,7 @@ overflow:hidden;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;
 }
-.menu__item:link:after, .menu__item:visited:after,.menu__item-disable:link:after, .menu__item-disable:visited:after{
+.menu__button:link:after, .menu__button:visited:after,.menu__button-active:link:after, .menu__button-active:visited:after{
 	/*content: "";*/
 	position: absolute;
 	height: 0%;
@@ -38,15 +38,15 @@ overflow:hidden;
 	-o-transition: all 0.75s ease 0s;
 	transition: all 0.75s ease 0s;
 }
-.menu__item:link:hover, .menu__item:visited:hover,.menu__item-disable:link:hover, .menu__item-disable:visited:hover{
+.menu__button:link:hover, .menu__button:visited:hover,.menu__button-active:link:hover, .menu__button-active:visited:hover{
 	/*color: #FFF;*/
 	color:#f7ca18;
 	text-shadow: none;
 }
-.menu__item:link:hover:after, .menu__item:visited:hover:after,.menu__item-disable:link:hover:after, .menu__item-disable:visited:hover:after{
+.menu__button:link:hover:after, .menu__button:visited:hover:after,.menu__button-active:link:hover:after, .menu__button-active:visited:hover:after{
 	height: 450%;
 }
-.menu__item {
+.menu__button {
 	color: #fff;
 	bottom:128px;
 	left:450px;
@@ -55,7 +55,7 @@ overflow:hidden;
 	border: 2px solid #F7CA18;
 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
-.menu__item-disable {
+.menu__button-active {
 	color: #fff;
 	bottom:128px;
 	left:450px;

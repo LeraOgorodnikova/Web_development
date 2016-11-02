@@ -1,16 +1,12 @@
+
+<div class="menuContr" ng-controller="menuController">
+<menu-directive current="page"></menu-directive>
+</div>
+
+<div ng-controller="ListScoreController">
 <ol class="table">
-<li>Venonat</li>
-<li>Paras</li>
-<li>Gloom</li>
-<li>Oddish</li>
-<li>Charmeleon</li>
-<li>Squirtle</li>
-<li>Vulpix</li>
-<li>Clefairy</li>
-<li>Sandslash</li>
-<li>Pikachu</li>
-<li>Charmander</li>
-<li>Ekans</li>
-<li>Pidgeotto</li>
-<li>Spearow</li>
+  <li ng-repeat="x in UserScore">
+    {{ x.name + ': ' + x.score }}
+  </li>
 </ol>
+</div>
