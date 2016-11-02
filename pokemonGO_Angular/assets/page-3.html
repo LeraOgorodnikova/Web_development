@@ -1,11 +1,12 @@
 
-<div class="menuContr" ng-controller="menuController">
-<menu-directive current="page"></menu-directive>
+<div ng-controller="menuController">
+<menu-directive current="page">
+</menu-directive>
 </div>
 
 <div ng-controller="ListScoreController">
 <ol class="table">
-  <li ng-repeat="x in UserScore">
+  <li ng-repeat="x in UserScore | orderBy: reverse:'score'">
     {{ x.name + ': ' + x.score }}
   </li>
 </ol>

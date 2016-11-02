@@ -50,6 +50,7 @@ overflow:hidden;
 	color: #fff;
 	bottom:128px;
 	left:450px;
+	text-decoration: none;
 	display: block;
 	position: relative;
 	border: 2px solid #F7CA18;
@@ -59,6 +60,7 @@ overflow:hidden;
 	color: #fff;
 	bottom:128px;
 	left:450px;
+	text-decoration: none;
 	cursor: pointer;
 	display: block;
 	position: relative;
@@ -95,37 +97,28 @@ overflow:hidden;
     height: 80px;
     overflow: hidden;
     padding-left: 203px;
-   /* padding-right: 543px;*/
 	text-align: justify;
 	min-width:600px;
 	max-width:600px;
+	text-decoration: none;
 	bottom: 50px;
+	color: #fff;
 }
-.about__text2{
-	position:relative;
-	height: 120px;
-    overflow: hidden;
-    padding-left: 200px;
-    /*padding-right: 545px;*/
-	text-align: justify;
-	min-width:600px;
-	max-width:600px;
-	position: relative;
-	bottom: 70px;
-}
+
 .about__image{
 	padding-left:205px;
 	position: relative;
 	bottom: 60px;
 }
 .button-start {
-    border: 6px solid #f1eae9;
+    border: 4px solid #F7CA18;
     display: inline-block;
     font-size: 18px;
-    left: 530px;
-    margin: 45px;
-	background:#222222;
-	top:7px;
+    margin: 5px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    top: 18em;
 }
 .table{
 	font-weight:bold;
@@ -138,4 +131,6 @@ overflow:hidden;
   position: relative;
   margin-bottom: 0.4em;
   padding-left: 1em;
+  color: #fff;
+  text-decoration: none;
 }

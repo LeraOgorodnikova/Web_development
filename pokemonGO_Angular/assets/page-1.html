@@ -1,6 +1,9 @@
 
 <div ng-controller="menuController">
-<menu-directive current="page"></menu-directive>
+<menu-directive current="page">
+</menu-directive>
 </div>
 
-<a href="" class="menu__item button-start">START GAME</a>
+	<div class="pokemon" style="left:{{50+ballPos.X}}%;top:{{20+ballPos.Y}}%;background-image:url(css/background/pikachu.png);"></div>
+
+<a href="" class="menu__item button-start" ng-click="start()">START GAME</a>

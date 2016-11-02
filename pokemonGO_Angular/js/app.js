@@ -13,15 +13,25 @@ app.config(function($routeProvider) {
 })
 .controller("pagesController",function($scope,$log,$rootScope,$routeParams,$interval){
 	$scope.page=parseInt($routeParams.id) || 0;
+	$scope.ballPos={'X':0,'Y':0};
+
+    var tictac, tic=0;
+		$scope.start=function(){
+		tictac=$interval(function(){
+			tic++;
+			$scope.ballPos.X=50*Math.sin(tic/50);
+			$scope.ballPos.Y=20*Math.cos(tic/20);
+		},50);	
+	};
+	$scope.stop=function(){
+		$interval.cancel(tictac);
+	};
 	
 })
-.controller('ListScoreController', function($scope, $http,$log) {
-  $http.get("http://localhost:8081/?controller=user").then(function (response) {
-      $newArray = response.data.records;
-      $newArray.sort();
-      alert("IN LIST");
-      alert($newArray);
-      $scope.UserScore=$newArray;
+.controller('ListScoreController', function($scope, $http) {
+  $http.get("?controller=user").then(function (response) {
+      var newArray = response.data;
+      $scope.UserScore=newArray;
   });
 })
 
