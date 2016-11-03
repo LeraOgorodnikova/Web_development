@@ -13,20 +13,6 @@ app.config(function($routeProvider) {
 })
 .controller("pagesController",function($scope,$log,$rootScope,$routeParams,$interval){
 	$scope.page=parseInt($routeParams.id) || 0;
-	$scope.ballPos={'X':0,'Y':0};
-
-    var tictac, tic=0;
-		$scope.start=function(){
-		tictac=$interval(function(){
-			tic++;
-			$scope.ballPos.X=50*Math.sin(tic/50);
-			$scope.ballPos.Y=20*Math.cos(tic/20);
-		},50);	
-	};
-	$scope.stop=function(){
-		$interval.cancel(tictac);
-	};
-	
 })
 .controller('ListScoreController', function($scope, $http) {
   $http.get("?controller=user").then(function (response) {
@@ -43,13 +29,31 @@ app.config(function($routeProvider) {
 			restrict: 'E',
 			templateUrl:"assets/directives/menu.html",
 			replace: true,
-			// transclude: true,
+			scope:{
+			current:'='
+		    }
+		}
+	})
+.controller("gameController",function ($scope,$log,$rootScope,$routeParams) {
+	$scope.ballPos={'X':0,'Y':0};
+
+    var tictac, tic=0;
+		$scope.start=function(){
+		tictac=$interval(function(){
+			tic++;
+			$scope.ballPos.X=50*Math.sin(tic/50);
+			$scope.ballPos.Y=20*Math.cos(tic/20);
+		},50);	
+	};
+	})
+.directive("pokemonDirective" , function(){
+		return {
+			restrict: 'E',
+			templateUrl:"assets/directives/pokemon.html",
+			replace: true,
 			scope:{
 			current:'='
 		    },
-			controller: function($scope){
-			 //$scope.page=parseInt($routeParams.id) || 0;
-			 //$scope.current=$scope.page;
-			 }
+		    //code
 		}
 	})
