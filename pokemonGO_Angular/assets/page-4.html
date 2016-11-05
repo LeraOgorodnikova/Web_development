@@ -1,5 +1,8 @@
-<div ng-controller="gameController">
+<div class="pole" ng-controller="gameController">
 <button ng-click="start()">Start</button>
+<p>Score: {{score}}</p>
+<p>Level: {{level}}</p>
+<p>Time: {{time}}</p>
 
 <pokemon-directive></pokemon-directive>
 </div>
