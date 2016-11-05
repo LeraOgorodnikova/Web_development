@@ -34,19 +34,14 @@ app.config(function($routeProvider) {
 		    }
 		}
 	})
-// .value('pokConf', {
-//   power: 0,
-//   speed: 0,
-//   width: 100 ,
-//   height: 100 ,
-//   image: ""
-// })
-.value("confPower", 0)
-.value("confSpeed", 0)
-.value("confWidth", 100)
-.value("confHeight", 100)
-.value("confImage", "")
-.controller("gameController",function ($scope,$log,$rootScope,$routeParams,$interval) {
+.value('pok', {
+  power: 0,
+  speed: 0,
+  width: 100 ,
+  height: 100 ,
+  image: ""
+})
+.controller("gameController",['pok',function ($scope,$log,$rootScope,$routeParams,$interval) {
 	$scope.ballPos={'X':0,'Y':0};
     $scope.score=0;
     $scope.level=1;
@@ -65,10 +60,10 @@ app.config(function($routeProvider) {
 	};
 		$rootScope.$on('catch',function(){
 		$scope.level++;
-        $scope.score+= confPower*tic*confSpeed;
+        $scope.score+= pok.power*tic*pok.speed;
 	});
-	})
-.directive("pokemonDirective" , function(){
+	}])
+.directive("pokemonDirective" ,['pok', function(){
 		return {
 			restrict: 'E',
 			templateUrl:"assets/directives/pokemon.html",
@@ -81,15 +76,15 @@ app.config(function($routeProvider) {
 		    controller:function($scope, $http){
                 $http.get("?controller=pokemon").then(function (response) {
                 var newArray = response.data;
-                confPower=newArray["power"];
-                confSpeed=newArray["speed"];
-                confImage=newArray["image"];
+                pok.power=newArray["power"];
+                pok.speed=newArray["speed"];
+                pok.image=newArray["image"];
                 });
 		    },
             scope:{
-			pokwidth: confWidth,
-            pokheight: confHeight,
-            imagePokemon: confImage
+			pokwidth: pok.width,
+            pokheight: pok.height,
+            imagePokemon: pok.image
 		    }
 		}
-	})
+	}])
