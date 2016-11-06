@@ -34,36 +34,37 @@ app.config(function($routeProvider) {
 		    }
 		}
 	})
-.value('pok', {
-  power: 0,
-  speed: 0,
-  width: 100 ,
-  height: 100 ,
-  image: ""
+
+.factory("GameScore", function() {
+  var score = 0;
+  function setScore(value) {
+    score=value;
+  };
+  function getScore() {
+    return score
+  };
+  return {
+    getScore: getScore,
+    setScore: setScore
+  };
 })
-.controller("gameController",['pok',function ($scope,$log,$rootScope,$routeParams,$interval) {
+.controller("gameController", function ($scope,$log,$rootScope,$routeParams,$interval,GameScore,$http,$location) {
 	$scope.ballPos={'X':0,'Y':0};
     $scope.score=0;
+    $scope.finalScore=GameScore.getScore();
     $scope.level=1;
     $scope.time=0;
     var tictac, tic=0;
-	$scope.start=function(){
-		
-		tictac=$interval(function(){
-			tic++;
-			$scope.ballPos.X=50*Math.sin(tic/50);
-			$scope.ballPos.Y=20*Math.cos(tic/20);
-		},50);	
-	};
-		$scope.stop=function(){
-		$interval.cancel(tictac);
-	};
-		$rootScope.$on('catch',function(){
-		$scope.level++;
-        $scope.score+= pok.power*tic*pok.speed;
-	});
-	}])
-.directive("pokemonDirective" ,['pok', function(){
+
+	$scope.sendUser=function()
+	{
+			$http.post('/?controller=user&name='+$scope.name.username.$modelValue+'&score='+$scope.finalScore)
+			.success(function () {
+				$location.path('/page/3');
+			});
+	}
+	})
+.directive("pokemonDirective" , function(){
 		return {
 			restrict: 'E',
 			templateUrl:"assets/directives/pokemon.html",
@@ -73,18 +74,50 @@ app.config(function($routeProvider) {
 		        $rootScope.$emit('catch');
 	            };
 		    },
-		    controller:function($scope, $http){
-                $http.get("?controller=pokemon").then(function (response) {
-                var newArray = response.data;
-                pok.power=newArray["power"];
-                pok.speed=newArray["speed"];
-                pok.image=newArray["image"];
-                });
-		    },
-            scope:{
-			pokwidth: pok.width,
-            pokheight: pok.height,
-            imagePokemon: pok.image
-		    }
+		    controller:function($scope, $http,GameScore,$interval,$location){
+                  	var timer;
+  		            var tic =0;
+  		            $scope.ballPos={'X':0,'Y':0};
+
+            $scope.startGame=function(){
+
+  			var start = Date.now();
+  			timer = $interval(function() {
+  			$scope.time = parseInt(10-(Date.now() - start)/1000);
+            $http.get('/?controller=pokemon&id='+$scope.level)
+              .success(function(data) {
+              $scope.PokemonNow = data;
+              })
+  			if ($scope.time <=0) {
+  				//$location.path('/page/5');
+    			clearInterval(timer);
+    			$scope.catch();
+    			start = Date.now();
+  			}			
+  			tic++;
+			$scope.ballPos.X=40*Math.sin(tic/50);
+			$scope.ballPos.Y=50*Math.cos(tic/60);
+		}, 50);
+  		};
+		 $scope.catch=function(){ 
+        $scope.level++;
+        if ($scope.level==4){
+			$location.path('/page/5');
 		}
-	}])
+		
+        GameScore.setScore(GameScore.getScore()+$scope.PokemonNow.power*$scope.time);
+        //alert(GameScore.getScore());
+        $scope.score=GameScore.getScore();
+		$http.get('?controller=pokemon&id='+parseInt($scope.level))
+			.success(function(data) {
+  				$scope.PokemonNow=data;
+
+  			})
+
+		$interval.cancel(timer);
+		$scope.startGame();
+	    };
+		
+		},
+		}
+	})

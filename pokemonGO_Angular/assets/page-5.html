@@ -1,0 +1,17 @@
+<div  ng-controller="gameController">
+
+	<center><p> Game over!Enter your name, so we will add you to the Top List. </p>
+	<form name=name>
+	    <p>Your score: {{finalScore}}</p>
+		<input type="text" name="username" ng-model="username" required>
+         <div style="color:red" ng-show="name.username.$dirty && name.username.$invalid">
+         <div ng-show="name.username.$error.required">Username is required.</div>
+         </div>
+
+	    <p>
+        <input type="submit"
+         ng-disabled="name.username.$dirty && name.username.$invalid || name.username.$untouched" ng-click="sendUser()">
+         </p>
+	</form>
+	</center>
+</div>
