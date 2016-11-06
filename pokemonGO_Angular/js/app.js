@@ -77,19 +77,23 @@ app.config(function($routeProvider) {
 		    controller:function($scope, $http,GameScore,$interval,$location){
                   	var timer;
   		            var tic =0;
+                  var speed=0;
   		            $scope.ballPos={'X':0,'Y':0};
 
             $scope.startGame=function(){
-
-  			var start = Date.now();
-  			timer = $interval(function() {
-  			$scope.time = parseInt(10-(Date.now() - start)/1000);
             $http.get('/?controller=pokemon&id='+$scope.level)
               .success(function(data) {
               $scope.PokemonNow = data;
+              //speed=$scope.PokemonNow.power;
+              //alert(speed);
               })
+  			var start = Date.now();
+  			timer = $interval(function() {
+  			$scope.time = parseInt(10-(Date.now() - start)/1000);
+
   			if ($scope.time <=0) {
-  				//$location.path('/page/5');
+  				$location.path('/page/5');
+          GameScore.setScore(0);
     			clearInterval(timer);
     			$scope.catch();
     			start = Date.now();
@@ -97,16 +101,16 @@ app.config(function($routeProvider) {
   			tic++;
 			$scope.ballPos.X=40*Math.sin(tic/50);
 			$scope.ballPos.Y=50*Math.cos(tic/60);
-		}, 50);
+		}, 40);
   		};
 		 $scope.catch=function(){ 
         $scope.level++;
         if ($scope.level==4){
 			$location.path('/page/5');
+      GameScore.setScore(0);
 		}
 		
         GameScore.setScore(GameScore.getScore()+$scope.PokemonNow.power*$scope.time);
-        //alert(GameScore.getScore());
         $scope.score=GameScore.getScore();
 		$http.get('?controller=pokemon&id='+parseInt($scope.level))
 			.success(function(data) {
